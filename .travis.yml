@@ -1,0 +1,67 @@
+language: node_js
+node_js:
+  - "10.15.3"
+
+dist: trusty
+
+sudo: required
+
+cache:
+  directories:
+    - node_modules
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+
+  # sauce_connect: true
+
+branches:
+  only:
+    - master
+
+before_install:
+##  - chmod 555 ./scripts/deploy.sh
+##  - npm install -g @angular/cli
+##  # karma for travis
+##  - export CHROME_BIN=chromium-browser
+##  - export DISPLAY=:99.0
+##  - sh -e /etc/init.d/xvfb start
+##  - sleep 5
+
+before_script:
+
+script:
+##  - ng lint
+##  - ng test --code-coverage
+##  - ng e2e
+  - ng build --prod --base-href="/ec-site-app/"
+
+after_success:
+  # - npm install coveralls
+  # - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
+##  - bash scripts/deploy.sh
+##  - bash scripts/result.sh # テスト結果のindexを作成
+###  - cd scripts/AgileAPIScript_Run # RallyAPIテスト
+###  - bash agileApiObjectHandleBash.sh 1 US557 Defined # RallyAPIテスト
+
+after_failure:
+
+after_script:
+
+deploy:
+##  provider: pages
+##  skip_cleanup: true
+##  github_token: $GITHUB_TOKEN
+##  local_dir: report
+##  # local_dir: dist/componentSample
+##  on:
+##    branch: master
+
+env:
+##  global:
+##  - GH_REF: github.com/m-sugizaki/tmpRepoECSite.git
+ 
