@@ -1,0 +1,76 @@
+
+
+<div class="container">
+  <div class="row" style="padding-bottom: 20px; ">
+
+    <div>
+      <!-- logo -->
+      <h1>
+        商品検索
+      </h1>
+
+      <form class="login-form" role="form" #f="ngForm" (ngSubmit)="searchProductData()">
+        <div class="customDiv">
+          <span >商品名</span>
+          <mat-form-field style="width: 40% !important;">
+            <input matInput name="name" [(ngModel)]="product.name" type="text">
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span >メーカー</span>
+          <mat-form-field style="width: 40% !important;">
+            <input matInput id="maker" name="maker" [(ngModel)]="product.maker"  type="text" >
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span >価格帯</span>
+          <mat-form-field>
+            <input matInput id="fromprice" name="fromprice" [(ngModel)]="product.fromprice" type="number" >
+          </mat-form-field>
+          <div style="margin-left: 2%; display: inline-block;text-align: center" >
+            ～
+          </div>
+          <div style="margin-left: 2%; display: inline;" >
+          <mat-form-field>
+            <input matInput id="toprice" name="toprice" [(ngModel)]="product.toprice" type="number" #toprice="ngModel"  >
+          </mat-form-field>
+          <div style="padding-top:25px;display: inline; margin-left: 3%" >
+            <button mat-button type="submit" class="btn btn-login" >検索</button>
+          </div>
+          <p class="messageError" *ngIf="messagePrice">{{ messagePrice }}</p>
+        </div>
+        
+        </div>
+
+
+
+      </form>
+
+      <table id="payment_method" class="table-content mat-elevation-z8" border="1">
+        <thead>
+          <tr>
+            <td class="thead-table">商品コード</td>
+            <td class="thead-table">商品名</td>
+            <td class="thead-table">メーカー</td>
+            <td class="thead-table">価格</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products; let i = index">
+            <td class="blue">
+              <button class="link" type="button" (click)="goToProductDetail(product.primaryKey.productId)">
+                {{product.primaryKey.productId}}</button>
+            </td>
+            <td>{{product.productName}}</td>
+            <td>{{product.maker}}</td>
+            <td>{{product.price | number:'1.2-2'}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>{{message}}</p>
+    </div>
+
+
+  </div>
+</div>
+

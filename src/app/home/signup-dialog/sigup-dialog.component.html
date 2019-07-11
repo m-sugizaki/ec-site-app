@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row" style="padding-bottom: 20px; ">
+
+    <div class="form">
+      <!-- logo -->
+      <h1 >
+        新規パスワード登録
+      </h1>
+      <!-- Form login -->
+      <form class="login-form" role="form" #f="ngForm" (ngSubmit)="SignUp()">
+        <input name="user_id" [(ngModel)]="user.user_id" type="text" placeholder="ユーザーID" maxlength="10" required/>
+        <input id="password" name="password" [(ngModel)]="user.password" type="password" placeholder="パスワード" maxlength="50" required />
+        <input id="confirmPassword" name="password" [(ngModel)]="user.confirmPassword" type="password" placeholder="パスワード(確認)" maxlength="50" required />
+        <div>
+          <button  type="submit" class="btn btn-login">登録</button>
+          <button type="button" class="btn btn-cancel" (click)="onNoClick()">キャンセル</button>
+        </div>
+        <p class="message" *ngIf="message">{{ message }}</p>
+        <p class="success" *ngIf="success">{{ success }}</p>
+      </form>
+
+    </div>
+
+
+  </div>
+</div>

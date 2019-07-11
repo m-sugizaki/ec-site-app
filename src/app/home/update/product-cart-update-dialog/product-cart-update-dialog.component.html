@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row" style="padding-bottom: 20px; ">
+    <div>
+      <!-- logo -->
+      <h1>
+        商品カート更新
+      </h1>
+      <form class="login-form" role="form" #f="ngForm" (ngSubmit)="updateProductCart()">
+        <div class="customDiv">
+          <span >ｶｰﾄNo</span>
+          <mat-form-field>
+            <input matInput name="product_cart_id" [(ngModel)]="product_cart.product_cart_id" readonly >
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span >商品ｺｰﾄﾞ</span>
+          <mat-form-field style="width: 20% !important;">
+            <input matInput id="product_id" name="product_id" [(ngModel)]="product_cart.product_id"  readonly>
+            
+          </mat-form-field>
+          <mat-form-field style="width: 39% !important; margin-left: 1% !important;">
+            <input matInput id="product_name" name="product_name" [(ngModel)]="product_cart.product_name" readonly >
+          </mat-form-field>
+          
+        </div>
+        <div class="customDiv">
+          <span >価格</span>
+          <mat-form-field>
+            <input matInput id="price" name="price" [(ngModel)]="product_cart.price" type="text" readonly
+              >
+
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span >数量</span>
+          <mat-form-field>
+            <input matInput id="quantity" name="quantity" [(ngModel)]="product_cart.quantity" maxlength="11" (keyup)="Total()" required>
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span >購入金額</span>
+          <mat-form-field>
+            <input matInput id="total" name="total" [(ngModel)]="product_cart.total" readonly >
+          </mat-form-field>
+        </div>
+        <div class="customDiv" >
+          <span >ｻｲｽﾞ</span>
+           
+            <mat-form-field>
+              <mat-select [(value)]="product_cart.size">
+                <mat-option *ngFor="let item of sizes"  [(value)]="item">{{item}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span >色</span>
+            
+            <mat-form-field>
+              <mat-select [(value)]="product_cart.color">
+                <mat-option *ngFor="let item of colors"  [(value)]="item">{{item}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+        </div>
+        <div style="padding-top:25px;">
+          <p class="messageError" *ngIf="message">{{ message }}</p>
+          <button mat-button type="submit" class="btn btn-login" >更新</button>
+          <button mat-button type="button" class="btn btn-cancel" (click)="Cancel()">キャンセル</button>
+        </div>
+
+      </form>
+
+    </div>
+
+
+  </div>
+</div>

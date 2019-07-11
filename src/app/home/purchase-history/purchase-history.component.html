@@ -1,0 +1,67 @@
+<h1>
+  購入履歴
+</h1>
+<div class="table-container">
+  <table id="table-review" class="table-content mat-elevation-z8" border="1">
+    <thead>
+      <tr>
+        <td id="orderDate" class="thead-table">注文日時</td>
+        <td id="orderNo" class="thead-table">注文No</td>
+        <td id="productId" class="thead-table">商品コード</td>
+        <td id="productName" class="thead-table">商品名</td>
+        <td id="orderStatus" class="thead-table">注文状況</td>
+        <td id="deliveryPlanDt" class="thead-table">配送予定日</td>
+        <td id="deliveryCompletionDt" class="thead-table">配送完了日</td>
+        <td id="evaluation" class="thead-table">評価</td>
+        <td id="review" class="thead-table">口コミ</td>
+        <td id="addToCart" class="thead-table">カートに入れる</td>
+        <td id="gotoCheckout" class="thead-table">レジに進む</td>
+        <td id="orderCancellation" class="thead-table">注文キャンセル</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let result of purchaseResult; let i = index"> <!---->
+          <td>{{result.orderDate | date: 'yyyy/MM/dd HH:mm'}}</td>
+          <td>{{result.orderNo}}</td>
+          <td>{{result.productId}}</td>
+          <td>{{result.productName}}</td>
+          <td>{{result.orderStatus}}</td>
+          <td>{{result.deliveryPlanDt | date: 'yyyy/MM/dd'}}</td>
+          <td>{{result.deliveryCompletionDt | date: 'yyyy/MM/dd'}}</td>
+          <td>
+              <label *ngIf="result.evaluation == 1">★☆☆☆☆</label>
+              <label *ngIf="result.evaluation == 2">★★☆☆☆</label>
+              <label *ngIf="result.evaluation == 3">★★★☆☆</label>
+              <label *ngIf="result.evaluation == 4">★★★★☆</label>
+              <label *ngIf="result.evaluation == 5">★★★★★</label>
+          </td>
+          <td>
+            <button class="link" *ngIf="result.evaluation"
+            (click)="goToReviewInfo(result.productId)">
+              修正・削除
+          </button>
+            <button class="link" *ngIf="!result.evaluation"
+            (click)="goToRegistryReview(result.productId)">
+              口コミを書く
+        </button>
+          </td>
+          <td>
+              <button class="link" (click)="addToCart(result)">
+              同じ内容でカートに追加
+              </button>
+          </td>
+          <td>
+              <button class="link" (click)="goToCheckout(result)">
+              同じ内容でレジに進む
+              </button>
+          </td>
+          <td>
+              <button class="link" *ngIf="result.orderStatus === '注文確定' || result.orderStatus === '配達準備中'"
+               (click)="openDialogCancelOrder(result)">
+              注文をキャンセルする
+          </button>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

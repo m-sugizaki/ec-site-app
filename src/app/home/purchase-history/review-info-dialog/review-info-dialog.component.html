@@ -1,0 +1,55 @@
+<h1>
+  口コミ情報
+</h1>
+<div class="customDiv">
+  <span style="margin-right:5%;">商品ｺｰﾄﾞ</span>
+  <mat-form-field>
+    <input matInput id="product_id" name="product_id" [(ngModel)]="product_id" maxlength="11" readonly>
+  </mat-form-field>
+</div>
+<button mat-button type="button" (click)="openDialogRegistry()" style="left:870px; background:skyblue">
+  追加
+</button>
+<div class="table-container">
+  <table id="table-review" class="table-content mat-elevation-z8" border="1">
+    <thead>
+      <tr>
+        <td name="reviewNo" class="thead-table" style="min-width:75px">口コミNo</td>
+        <td name="nickname" class="thead-table" style="min-width:100px">ニックネーム</td>
+        <td name="evaluation" class="thead-table">評価</td>
+        <td name="reviewContent" class="thead-table">口ｺﾐ内容</td>
+        <td name="reviewDate" class="thead-table" style="min-width:140px">口ｺﾐ日時</td>
+        <td name="delete" class="thead-table" style="min-width:50px">削除</td>
+        <td name="update" class="thead-table" style="min-width:50px">更新</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let review of reviewTable; let i = index">
+        <td>{{review.reviewNo}}</td>
+        <td>{{review.nickname}}</td>
+        <td>
+          <label *ngIf="review.evaluation == 1">★☆☆☆☆</label>
+          <label *ngIf="review.evaluation == 2">★★☆☆☆</label>
+          <label *ngIf="review.evaluation == 3">★★★☆☆</label>
+          <label *ngIf="review.evaluation == 4">★★★★☆</label>
+          <label *ngIf="review.evaluation == 5">★★★★★</label>
+        </td>
+        <td style="max-width:500px; word-wrap: break-word;">{{review.reviewContent}}</td>
+        <td>{{review.reviewDt | date:'yyyy/MM/dd HH:mm'}}</td>
+        <td>
+          <button class="link" (click)="confirmDelete(review.reviewNo)" *ngIf="loggedInUser === review.userId">
+            削除
+          </button>
+        </td>
+        <td>
+          <button class="link" (click)="update(review)" *ngIf="loggedInUser === review.userId">
+            修正
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button mat-button type="button" (click)="reviewComileFinish()" style="left:780px; background:skyblue; margin-top: 20px;">
+    口コミ情報編集完了
+    </button>
+</div>

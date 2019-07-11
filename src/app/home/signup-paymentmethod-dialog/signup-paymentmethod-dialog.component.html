@@ -1,0 +1,70 @@
+<div class="container">
+    <div class="row" style="padding-bottom: 20px; ">
+
+      <div>
+        <!-- logo -->
+        <h1>
+          支払い方法情報登録
+        </h1>
+
+        <form class="login-form" role="form" #f="ngForm" (ngSubmit)="Submit()">
+          <div class="customDiv">
+            <span style="margin-right:50px;">ユーザID</span>
+            <mat-form-field>
+              <input matInput name="user_id" [(ngModel)]="info.user_id" readonly>
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span style="margin-right:61px;">支払No</span>
+            <mat-form-field>
+              <input matInput id="payment_no" name="payment_no" [(ngModel)]="info.payment_no" readonly >
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span style="margin-right:50px;">支払方法</span>
+            <mat-form-field>
+              <input matInput id="payment_method" name="payment_method" [(ngModel)]="info.payment_method" type="text" maxlength="10"
+                 required>
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span style="margin-right:51px;">ｶｰﾄﾞ番号</span>
+            <mat-form-field>
+              <input matInput id="card_number" name="card_number" [(ngModel)]="info.card_number" maxlength="20"
+              pattern="[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}"  required>
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span style="margin-right:51px;">有効期限</span>
+            
+            <mat-form-field style="width: 20%">
+              <mat-select [(value)]="moth">
+                <mat-option *ngFor="let item of moths"  [(value)]="item">{{item}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+            <mat-form-field style="width: 30%; margin-left: 5px;">
+              <mat-select [(value)]="year">
+                <mat-option *ngFor="let item of years"  [(value)]="item">{{item}}</mat-option>
+            </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span style="margin-right:37px;">ｶｰﾄﾞ名義人</span>
+            <mat-form-field>
+              <input matInput id="owner_name" name="owner_name" [(ngModel)]="info.owner_name" maxlength="50" required>
+            </mat-form-field>
+          </div>
+
+          <p class="messageError" *ngIf="message">{{ message }}</p>
+          <div style="padding-top:25px;">
+            <button mat-button type="submit" class="btn btn-login" >登録</button>
+            <button mat-button type="button" class="btn btn-cancel" (click)="Cancel()">キャンセル</button>
+          </div>
+
+        </form>
+
+      </div>
+
+
+    </div>
+  </div>

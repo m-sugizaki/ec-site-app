@@ -1,0 +1,26 @@
+table {
+  width: 100%;
+}
+
+.table-content{
+  margin-top:10px;
+  border: none;
+}
+.thead-table{
+  background-color: #00B050;
+}
+
+.link {
+  background:none!important;
+  color: skyblue;
+  margin: 5px;
+  border:none;
+  padding:0!important;
+  font: inherit;
+  /*border is optional*/
+  border-bottom:1px none skyblue !important;
+  font-style: inherit !important;
+  cursor: pointer;
+  display: inline-block;
+
+}

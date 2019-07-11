@@ -1,0 +1,161 @@
+<div class="container">
+  <h1 style="text-align: center">
+    アカウント情報更新
+  </h1>
+
+  <form role="form" #f="ngForm" (ngSubmit)="updateUserInfo()">
+    <div class="customDiv">
+      <span style="margin-right:30px;">ユーザID</span>
+      <mat-form-field>
+        <input matInput name="user_id" [(ngModel)]="user.user_id" readonly>
+      </mat-form-field>
+    </div>
+    <div class="customDiv">
+      <span style="margin-right:60px;">氏名</span>
+      <mat-form-field>
+        <input matInput id="name" name="name" [(ngModel)]="user.name" maxlength="50" required>
+      </mat-form-field>
+    </div>
+    <div class="customDiv">
+      <span style="margin-right:44px;">ﾆｯｸﾈｰﾑ</span>
+      <mat-form-field>
+        <input matInput id="nickname" name="nickname" [(ngModel)]="user.nickname" type="text" maxlength="50" required>
+      </mat-form-field>
+    </div>
+    <div class="customDiv">
+      <span style="margin-right:28px;">郵便番号</span>
+      <mat-form-field>
+        <input matInput id="postal_code" name="postal_code" [(ngModel)]="user.postal_code" maxlength="50"
+          #postal_code="ngModel" required>
+      </mat-form-field>
+    </div>
+    <div class="customDiv">
+      <span style="margin-right:52px;">住所1</span>
+      <mat-form-field>
+        <input matInput id="address1" name="address1" [(ngModel)]="user.address1" maxlength="100" required>
+      </mat-form-field>
+    </div>
+    <div class="customDiv">
+      <span style="margin-right:52px;">住所2</span>
+      <mat-form-field>
+        <input matInput id="address2" name="address2" [(ngModel)]="user.address2" maxlength="100">
+      </mat-form-field>
+    </div>
+    <div class="customDiv">
+      <span style="margin-right:28px;">電話番号</span>
+      <mat-form-field>
+        <input matInput id="phone_number" name="phone_number" [(ngModel)]="user.phone_number" maxlength="15"
+          #phone_number="ngModel" required>
+
+      </mat-form-field>
+    </div>
+    <div class="customDiv">
+      <span style="margin-right:48px;">E-mail</span>
+      <mat-form-field>
+        <input matInput id="email" name="email" [(ngModel)]="user.email" type="email" maxlength="50" #email="ngModel"
+          required>
+
+      </mat-form-field>
+    </div>
+    <div class="customDiv">
+      <span style="margin-right:28px;">生年月日</span>
+      <mat-form-field>
+        <!-- <input matInput [matDatepicker]="picker" id="birthday" name="user.birthday" [(ngModel)]="user.birthday_new"
+          maxlength="10" (keypress)="isNumber($event)" (click)="picker.open()" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker> -->
+        <input matInput id="birthday" name="user.birthday" [(ngModel)]="user.birthday_new" maxlength="10" required>
+      </mat-form-field>
+    </div>
+    <div class="customDiv">
+      <span style="margin-right:36px;">会員ﾗﾝｸ</span>
+      <mat-form-field>
+        <input matInput id="member_rank" name="member_rank" [(ngModel)]="user.member_rank" maxlength="5" required>
+      </mat-form-field>
+    </div>
+
+    <div class="h4-button-container">
+      <h4 style="margin-left: 10%; display:inline;">支払い方法情報</h4>
+      <button mat-button type="button" (click)="openDialogPaymentMethod()" style="left:520px; background:skyblue">
+        追加
+      </button>
+    </div>
+    <table id="payment_method" class="table-content mat-elevation-z8" border="1">
+      <thead>
+        <tr>
+          <td class="thead-table">支払No</td>
+          <td class="thead-table">支払方法</td>
+          <td class="thead-table">ｶｰﾄﾞ番号</td>
+          <td class="thead-table">有効期限</td>
+          <td class="thead-table">ｶｰﾄﾞ名義人</td>
+          <td class="thead-table">削除</td>
+          <td class="thead-table">更新</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let payment of payments; let i = index">
+          <td>{{payment.primaryKey.paymentNo}}</td>
+          <td>{{payment.paymentMethod}}</td>
+          <td>{{payment.cardNumber}}</td>
+          <td>{{payment.expirationDate | date:'MM/yy'}}</td>
+          <td>{{payment.cardHolderName}}</td>
+          <td class="blue">
+            <button class="link" type="button"
+              (click)="deletePaymentMethod(payment.primaryKey.userId, payment.primaryKey.paymentNo)">削除</button>
+          </td>
+          <td class="blue">
+            <button class="link" type="button" (click)="updatePaymentMethod(payment)">更新</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="h4-button-container">
+      <h4 style="margin-left: 10%; display: inline;">お届け先情報</h4>
+      <button mat-button type="button" (click)="openDialogShipping()" style="left:535px; background:skyblue">
+        追加
+      </button>
+    </div>
+    <table id="shipping_method" class="table-content mat-elevation-z8" border="1">
+      <thead>
+        <tr>
+          <td class="thead-table">お届けNo</td>
+          <td class="thead-table">郵便番号</td>
+          <td class="thead-table">住所1</td>
+          <td class="thead-table">住所2</td>
+          <td class="thead-table">電話番号</td>
+          <td class="thead-table">お届け先名</td>
+          <td class="thead-table">削除</td>
+          <td class="thead-table">更新</td>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let shipping of shippings; let i = index">
+          <td>{{shipping.primaryKey.shippingAddressNo}}</td>
+          <td>{{shipping.postalCode}}</td>
+          <td>{{shipping.address1}}</td>
+          <td>{{shipping.address2}}</td>
+          <td>{{shipping.phoneNumber}}</td>
+          <td>{{shipping.shippingAddressName}}</td>
+          <td class="blue">
+            <button class="link" (click)="deleteShippingAddress(shipping.primaryKey.shippingAddressNo)"
+              type="button">削除</button>
+          </td>
+          <td class="blue">
+            <button class="link" (click)="updateShippingAddress(shipping.primaryKey.shippingAddressNo)"
+            type="button">更新</button>
+          </td>
+
+        </tr>
+      </tbody>
+
+
+    </table>
+
+    <p class="message" *ngIf="message">{{ message }}</p>
+    <button mat-button type="submit" class="button">更新</button>
+    <button mat-button type="button" class="btn btn-cancel" (click)="onNoClick()">キャンセル</button>
+
+  </form>
+</div>

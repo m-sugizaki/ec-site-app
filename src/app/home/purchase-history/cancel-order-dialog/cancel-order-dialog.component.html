@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="row" style="padding-bottom: 20px; ">
+
+    <div>
+      <h1>
+        注文取消確認
+      </h1>
+      <div class="customDiv">
+        <span style="margin-right:9%;">注文No</span>
+        <mat-form-field>
+          <input matInput name="orderNo" [(ngModel)]="order_info.orderNo" readonly>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:7%;">商品ｺｰﾄﾞ</span>
+        <mat-form-field class="test">
+          <input matInput name="productId" [(ngModel)]="order_info.productId" readonly>
+        </mat-form-field>
+        <mat-form-field>
+        <input matInput name="productName" [(ngModel)]="order_info.productName" readonly>
+      </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:14%;">価格</span>
+        <mat-form-field>
+          <input matInput name="price" [ngModel]="order_info.price | number:'1.1-2'"
+          (ngModelChange)="order_info.price=$event" readonly>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:14%;">数量</span>
+        <mat-form-field>
+          <input matInput name="quantity" [(ngModel)]="order_info.quantity" readonly>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:8%;">購入金額</span>
+        <mat-form-field>
+          <input matInput name="summary" [ngModel]="order_info.summary | number:'1.1-2'"
+          (ngModelChange)="order_info.summary=$event"  readonly>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:15%;">ｻｲｽﾞ</span>
+        <mat-form-field>
+          <input matInput name="size" [(ngModel)]="order_info.size" readonly>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:18%;">色</span>
+        <mat-form-field>
+          <input matInput name="color" [(ngModel)]="order_info.color" readonly>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+          <span style="margin-right:5%;">配送予定日</span>
+          <mat-form-field>
+            <input matInput name="deliveryPlanDt" [ngModel]="order_info.deliveryPlanDt | date:'yyyy/MM/dd'"
+            (ngModelChange)="order_info.deliveryPlanDt=$event" readonly>
+          </mat-form-field>
+      </div>
+      <!-- <p class="messageError" *ngIf="message">{{ message }}</p> -->
+
+      <div style="padding-top:25px;">
+        <button mat-button (click)="confirm()" class="btn btn-login">取消</button>
+        <button mat-button type="button" class="btn btn-cancel" (click)="cancel()">キャンセル</button>
+      </div>
+
+    </div>
+
+
+  </div>
+</div>

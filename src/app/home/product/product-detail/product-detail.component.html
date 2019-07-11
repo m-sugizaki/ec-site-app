@@ -1,0 +1,165 @@
+
+
+<div >
+  <div class="row" style="padding-bottom: 20px; ">
+
+    <div>
+        <h1>
+          商品詳細
+        </h1>
+
+      <div class="customDiv">
+        <span style="margin-right:3%;">商品ｺｰﾄﾞ</span>
+        <mat-form-field>
+          <input matInput id="productId" name="productId" [(ngModel)]="product_detail.primaryKey.productId" readonly>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:4%;">商品名</span>
+        <mat-form-field style="width: 50%">
+          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+          id="productName" name="productName" [(ngModel)]="product_detail.productName" readonly></textarea>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:3%;">メーカー</span>
+        <mat-form-field>
+          <input matInput id="maker" name="maker" [(ngModel)]="product_detail.maker" type="text" maxlength="10"
+          readonly>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:5%;">価格</span>
+        <mat-form-field>
+          <input matInput id="price" name="price" [ngModel]="product_detail.price | number:'1.1-2'"
+          (ngModelChange)="product_detail.price=$event" maxlength="20" readonly>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:5%;">ｻｲｽﾞ</span>
+        <mat-form-field>
+          <mat-select [(ngModel)]="product_detail.size">
+            <mat-option *ngFor="let size of sizeList" [value]="size"> {{size}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:6%;">色</span>
+        <mat-form-field>
+          <mat-select [(ngModel)]="product_detail.color">
+            <mat-option *ngFor="let color of colorList" [value]="color"> {{color}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div class="customDiv">
+        <span style="margin-right:2.5%;">ｾｰﾙｽﾎﾟｲﾝﾄ</span>
+        <mat-form-field style="width: 50%">
+          <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+           id="salePoint" name="salePoint" [(ngModel)]="product_detail.salePoint" readonly></textarea>
+        </mat-form-field>
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:4%;">在庫数</span>
+        <mat-form-field>
+          <input matInput id="stockQuantity" name="stockQuantity" [(ngModel)]="product_detail.stockQuantity"
+            maxlength="50" readonly>
+        </mat-form-field>
+      </div>
+      <div>
+          <span style="margin-right:5%;">写真</span>
+        <img id="ItemPreview" src="" style="max-width:405px;"/>
+      </div>
+      <div style="height:auto; margin-top:15px;">
+        <span  style="margin-right:1%;">類似商品ｺｰﾄﾞ</span>
+        <div style="display:inline-grid">
+            <a class="hyperlink "*ngFor="let similarProduct of similarProductList"
+              [routerLink]="[ '/product','detail',similarProduct ]" routerLinkActive="active">
+            {{similarProduct}}</a>
+        </div>
+
+      </div>
+      <div class="customDiv">
+        <span style="margin-right:5%;">数量</span>
+        <mat-form-field>
+          <input matInput  id="quantity" name="quantity" [(ngModel)]="quantity" maxlength="11" required>
+        </mat-form-field>
+      </div>
+      <div class="purchasePrice">
+        <span style="margin-right:3%;">購入金額</span>
+          <span matInput id="purchasePrice" name="purchasePrice"
+            maxlength="50" readonly>{{quantity* (product_detail.price) | number: '1.1-2'}}</span>
+      </div>
+
+      <p class="messageError" *ngIf="message">{{ message }}</p>
+      <div style="padding-top:25px;">
+        <button mat-button type="submit" class="btn btn-login" (click)="submit()">カートに入れる</button>
+        <button mat-button type="button" class="btn btn-login" (click)="openDialogProductCartBuy(product_detail.primaryKey.productId)">レジに進む</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="table-container">
+    <table id="table-review" class="table-content mat-elevation-z8" border="1">
+        <thead>
+          <tr>
+            <td  class="thead-table">口コミNo</td>
+            <td  class="thead-table">ニックネーム</td>
+            <td  class="thead-table">評価</td>
+            <td  class="thead-table">口ｺﾐ内容</td>
+            <td  class="thead-table">口ｺﾐ日時</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let review of reviewTable; let i = index">
+            <td>{{review.reviewNo}}</td>
+            <td>{{review.nickname}}</td>
+            <td>
+                <label *ngIf="review.evaluation == 1">★☆☆☆☆</label>
+                <label *ngIf="review.evaluation == 2">★★☆☆☆</label>
+                <label *ngIf="review.evaluation == 3">★★★☆☆</label>
+                <label *ngIf="review.evaluation == 4">★★★★☆</label>
+                <label *ngIf="review.evaluation == 5">★★★★★</label>
+            </td>
+            <td style="max-width:500px; word-wrap: break-word;">{{review.reviewContent}}</td>
+            <td>{{review.reviewDt | date:'yyyy/MM/dd HH:mm'}}</td>
+          </tr>
+        </tbody>
+      </table>
+    <!-- <table mat-table [dataSource]="reviewTable" class="mat-elevation-z8" >
+
+        <ng-container matColumnDef="reviewNo">
+          <th mat-header-cell *matHeaderCellDef> 口コミNo</th>
+          <td mat-cell *matCellDef="let element"> {{element.primaryKey.reviewNo}} </td>
+        </ng-container>
+
+        <ng-container  matColumnDef="nickname" >
+          <th mat-header-cell *matHeaderCellDef> ニックネーム </th>
+          <td mat-cell *matCellDef="let element"> {{user}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="evaluation">
+          <th mat-header-cell *matHeaderCellDef> 評価 </th>
+          <td mat-cell *matCellDef="let element">
+            <label *ngIf="element.evaluation == 1">★☆☆☆☆</label>
+            <label *ngIf="element.evaluation == 2">★★☆☆☆</label>
+            <label *ngIf="element.evaluation == 3">★★★☆☆</label>
+            <label *ngIf="element.evaluation == 4">★★★★☆</label>
+            <label *ngIf="element.evaluation == 5">★★★★★</label>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="reviewContent">
+          <th mat-header-cell *matHeaderCellDef> 口ｺﾐ内容 </th>
+          <td mat-cell *matCellDef="let element"> {{element.reviewContent}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="reviewDt">
+            <th mat-header-cell *matHeaderCellDef> 口ｺﾐ日時 </th>
+            <td mat-cell *matCellDef="let element"> {{element.reviewDt}} </td>
+          </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table> -->
+</div>

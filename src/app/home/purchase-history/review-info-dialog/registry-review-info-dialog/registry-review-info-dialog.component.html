@@ -1,0 +1,54 @@
+<div >
+    <div class="row" style="padding-bottom: 20px; ">
+
+      <div>
+        <h1>
+            口コミ{{flag}}
+        </h1>
+        <div class="customDiv">
+          <span style="margin-right:13%;">商品ｺｰﾄﾞ</span>
+          <mat-form-field>
+            <input matInput name="product_id" [(ngModel)]="product_id" readonly>
+          </mat-form-field>
+          <mat-form-field style="width:265px;">
+              <input matInput name="productName" [(ngModel)]="productName" readonly>
+            </mat-form-field>
+        </div>
+        <div class="customDiv">
+            <span style="margin-right:8%;">ニックネーム</span>
+            <mat-form-field>
+              <input matInput name="nickname" [(ngModel)]="reviewInfo.nickname" readonly>
+            </mat-form-field>
+          </div>
+          <div>
+              <span style="margin-right:19%;">評価</span>
+              <mat-form-field>
+                  <mat-select [(value)]="reviewInfo.evaluation">
+                    <mat-option value="5">★★★★★</mat-option>
+                    <mat-option value="4">★★★★☆</mat-option>
+                    <mat-option value="3">★★★☆☆</mat-option>
+                    <mat-option value="2">★★☆☆☆</mat-option>
+                    <mat-option value="1">★☆☆☆☆</mat-option>
+                  </mat-select>
+                </mat-form-field>
+          </div>
+
+          <div class="customDiv">
+              <span style="margin-right:13%;">口ｺﾐ内容</span>
+              <mat-form-field style="width: 75%">
+                <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                name="review_content" [(ngModel)]="reviewInfo.review_content" maxlength="100"></textarea>
+              </mat-form-field>
+            </div>
+        <p class="messageError" *ngIf="message">{{ message }}</p>
+
+        <div style="padding-top:25px; margin-left:auto; width:305px;">
+          <button mat-button (click)="confirm()" class="btn btn-login">{{flag}}</button>
+          <button mat-button type="button" class="btn btn-cancel" (click)="cancel()">キャンセル</button>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>

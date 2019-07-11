@@ -1,0 +1,89 @@
+<!-- side nav -->
+<mat-sidenav-container class="nav-container" (backdropClick)="sidenav.close()">
+
+  <mat-sidenav #sidenav class="nav-sidenav" mode="side" opened="Sidenav_isOpen" (closedStart)="changeState()"
+    (openedStart)="changeState()">
+    <mat-nav-list style="overflow-x: hidden !important;">
+      <a mat-list-item class="main-item" routerLinkActive="active" routerLink="/home">
+        <mat-icon>home</mat-icon>
+        <span>マイページ</span>
+      </a>
+      <a mat-list-item class="main-item" routerLinkActive="active" routerLink="/search">
+        <mat-icon>search</mat-icon>
+        <span>商品検索</span>
+      </a>
+      <a mat-list-item class="main-item" routerLinkActive="active" routerLink="/product-cart" *ngIf="isLoggedIn">
+        <mat-icon>shopping_cart</mat-icon>
+        <span>商品カート</span>
+      </a>
+      <a mat-list-item class="main-item" routerLinkActive="active" routerLink="/purchase-history" *ngIf="isLoggedIn">
+        <mat-icon>history</mat-icon>
+        <span>購入履歴</span>
+      </a>
+      <a mat-list-item class="main-item" routerLinkActive="active" routerLink="/info" *ngIf="isLoggedIn">
+        <mat-icon>info</mat-icon>
+        <span>アカウント</span>
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+
+  <mat-sidenav-content class="nav-content">
+    <!-- header -->
+    <mat-toolbar class="header" [ngClass]="{'changeState': Sidenav_isOpen }">
+      <mat-toolbar-row class="row-1" style="background-color: #36bef4">
+        <div fxLayout="row" fxFlexFill
+          style="height: 100%; min-height: 100%; min-width: 100%; width: 100%; flex-direction: row; box-sizing: border-box; display: flex; align-items: center;">
+          <div class="icon-cover">
+            <button mat-icon-button (click)="sidenav.toggle()">
+              <mat-icon style="color: white">menu</mat-icon>
+            </button>
+          </div>
+          <img fxShow fxHide.xs="true" class="img" src="assets/images/cubelogo.PNG" alt="CUBE SYSTEM LOGO" />
+          <div id="title" style="color: white;">
+            <span class="title" >{{ title }}</span>
+          </div>
+          <div class="icon-cover">
+            <!-- <div style="font-size: 12px; text-align: center; color: #03A9F4"> -->
+            <div style="font-size: 12px; text-align: center; color: white">
+              <!-- <span>
+                {{ now | date: 'yyyy/MM/dd HH:mm:ss' }}
+              </span> -->
+            </div>
+            <div class="userInfo">
+              <span>ようこそ{{username}}さま</span>
+              <span style="font-size:13px; display:block;" *ngIf="isLoggedIn">
+                最終ログイン日時: {{loggedInDate | date:'yyyy/MM/dd HH:mm'}}</span>
+              <span style="font-size:13px; display:block;" *ngIf="isLoggedIn">
+                商品カート有無: {{hasProductCart | async }}</span>
+            </div>
+            <div style="text-align-last:center; color: black;" *ngIf="isLoggedIn == false">
+              <button mat-button fxShow fxHide.xs="true" (click)="openDialog()" >
+                ログイン
+              </button>/
+              <button mat-button fxShow fxHide.xs="true" (click)="openDialogSigup()">
+                新規登録
+              </button>
+            </div>
+            <div style="text-align-last:right; color: white;" *ngIf="isLoggedIn">
+              <button mat-button fxShow fxHide.xs="true" type="button" (click)="logOut()" >
+                ログアウト
+              </button>
+            </div>
+          </div>
+        </div>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <!-- app centent -->
+    <div class="app-content" [ngClass]="{'changeStateAppcontent': Sidenav_isOpen }">
+
+      <router-outlet></router-outlet>
+    </div>
+
+    <!-- <div class="footer"> -->
+    <div class="footer" style="background-color: #36bef4" [ngClass]="{'changeState': Sidenav_isOpen }">
+      <span>Copyright © CUBE SYSTEM VIETNAM CO.,LTD.</span>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

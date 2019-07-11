@@ -1,0 +1,99 @@
+<div class="container">
+  <h1>
+    アカウント情報
+  </h1>
+
+  <table id="userinfo">
+    <tr>
+
+      <td class="thead">ユーザID:</td>
+      <td class="tbody">{{user.user_id}}</td>
+    </tr>
+    <tr>
+      <td class="thead">氏名:</td>
+      <td class="tbody">{{user.name}}</td>
+    </tr>
+    <tr>
+      <td class="thead">ﾆｯｸﾈｰﾑ:</td>
+      <td class="tbody">{{user.nickname}}</td>
+    </tr>
+    <tr>
+      <td class="thead">郵便番号:</td>
+      <td class="tbody">{{user.postal_code}}</td>
+    </tr>
+    <tr>
+      <td class="thead">住所1:</td>
+      <td class="tbody">{{user.address1}}</td>
+    </tr>
+    <tr>
+      <td class="thead">住所2:</td>
+      <td class="tbody">{{user.address2}}</td>
+    </tr>
+    <tr>
+      <td class="thead">電話番号:</td>
+      <td class="tbody">{{user.phone_number}}</td>
+    </tr>
+    <tr>
+      <td class="thead">E-mail:</td>
+      <td>{{user.email}}</td>
+    </tr>
+    <tr>
+      <td class="thead">生年月日:</td>
+      <td class="tbody">{{ user.birthday | date:'yyyy/MM/dd' }}</td>
+    </tr>
+    <tr>
+      <td class="thead">会員ﾗﾝｸ:</td>
+      <td class="tbody"s>{{user.member_rank}}</td>
+    </tr>
+  </table>
+  <h4 style="margin-left: 20%">支払い方法情報</h4>
+  <table id="payment_method" class="mat-elevation-z8" border="1">
+    <thead>
+        <tr>
+          <td class="theadpayment">支払No</td>
+          <td class="theadpayment">支払方法</td>
+          <td class="theadpayment">ｶｰﾄﾞ番号</td>
+          <td class="theadpayment">有効期限</td>
+          <td class="theadpayment">ｶｰﾄﾞ名義人</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let payment of payments; let i = index" >
+          <td>{{payment.primaryKey.paymentNo}}</td>
+          <td>{{payment.paymentMethod}}</td>
+          <td>{{payment.cardNumber}}</td>
+          <td>{{payment.expirationDate | date:'MM/yy'}}</td>
+          <td>{{payment.cardHolderName}}</td>
+        </tr>
+    </tbody>
+
+  </table>
+  <h4 style="margin-left: 20%">お届け先情報</h4>
+  <table id="payment_method"class="mat-elevation-z8" border="1">
+    <thead>
+        <tr >
+          <td class="theadpayment">お届けNo</td>
+          <td class="theadpayment">郵便番号</td>
+          <td class="theadpayment">住所1</td>
+          <td class="theadpayment">住所2</td>
+          <td class="theadpayment">電話番号</td>
+          <td class="theadpayment">お届け先名</td>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let shipping of shippings; let i = index">
+          <td>{{shipping.primaryKey.shippingAddressNo}}</td>
+          <td>{{shipping.postalCode}}</td>
+          <td>{{shipping.address1}}</td>
+          <td>{{shipping.address2}}</td>
+          <td>{{shipping.phoneNumber}}</td>
+          <td>{{shipping.shippingAddressName}}</td>
+
+        </tr>
+    </tbody>
+
+
+  </table>
+  <button mat-button class="button" (click)="openDialogUserInfo()">変更</button>
+  </div>

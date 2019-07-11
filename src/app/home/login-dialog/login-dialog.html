@@ -1,0 +1,43 @@
+<!-- <div mat-dialog-content>
+  <div class="form">
+    <h1 mat-dialog-title>Login</h1>
+    <mat-form-field class="login-form" style="width:350px">
+      <input name="user_id" [(ngModel)]="user.user_id" type="text" placeholder="ユーザーID" required />
+      <input id="password" name="password" [(ngModel)]="user.password" type="password" placeholder="パスワード" required />
+    </mat-form-field>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button class="btn btn-cancel" (click)="onNoClick()">Cancel</button>
+  <button mat-button class="btn btn-login" (click)="login()">Ok</button>
+  <p class="message" *ngIf="message">{{ message }}</p>
+</div> -->
+<div class="container">
+  <div class="row" style="padding-bottom: 20px; ">
+
+    <div class="form">
+      <!-- logo -->
+      <h1 >
+          ログイン
+      </h1>
+      <!-- Form login -->
+      <form class="login-form" role="form" #f="ngForm" (ngSubmit)="SignIn()">
+        <input name="user_id" [(ngModel)]="user.user_id" type="text" placeholder="ユーザーID" required />
+        <input id="password" name="password" [(ngModel)]="user.password" type="password" placeholder="パスワード" required />
+        <div>
+          <button  type="submit" class="btn btn-login">ログイン</button>
+          <button type="button" class="btn btn-cancel" (click)="onNoClick()">キャンセル</button>
+        </div>
+        <p class="message" *ngIf="message">{{ message }}</p>
+      </form>
+
+    </div>
+    <br/>
+    <button mat-button   style="padding:0; display:block" (click)="openDialogSigup()">
+        新規パスワード登録
+    </button>
+    <button mat-button   style=" padding:0;" (click)="openDialogChange()">
+        パスワード変更
+    </button>
+  </div>
+</div>

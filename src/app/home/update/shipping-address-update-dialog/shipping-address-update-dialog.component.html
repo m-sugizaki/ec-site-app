@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row" style="padding-bottom: 20px; ">
+
+      <div>
+        <!-- logo -->
+        <h1>
+          お届け先情報更新
+        </h1>
+
+        <form class="login-form" role="form" #f="ngForm" (ngSubmit)="updateShippingAddress()">
+          <div class="customDiv">
+            <span >ユーザID</span>
+            <mat-form-field>
+              <input matInput name="user_id" [(ngModel)]="shippingAddress.user_id" readonly>
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span >お届けNo</span>
+            <mat-form-field>
+              <input matInput id="shipping_address_no" name="shipping_address_no" [(ngModel)]="shippingAddress.shipping_address_no"  readonly>
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span >郵便番号</span>
+            <mat-form-field>
+              <input matInput id="postal_code" name="postal_code" [(ngModel)]="shippingAddress.postal_code" type="text" maxlength="10"
+                 required  #postal_code="ngModel">
+
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span >住所1</span>
+            <mat-form-field>
+              <input matInput id="address1" name="address1" [(ngModel)]="shippingAddress.address1" maxlength="100"
+              required>
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span >住所2</span>
+            <mat-form-field>
+              <input matInput id="address2" name="address2" [(ngModel)]="shippingAddress.address2" maxlength="100" >
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span >電話番号</span>
+            <mat-form-field>
+              <input matInput id="phone_number" name="phone_number" [(ngModel)]="shippingAddress.phone_number" maxlength="15"
+               #phone_number="ngModel" required >
+            </mat-form-field>
+          </div>
+          <div class="customDiv">
+            <span >お届け先名</span>
+            <mat-form-field>
+              <input matInput id="shipping_address_name" name="shipping_address_name" [(ngModel)]="shippingAddress.shipping_address_name"  maxlength="50" required >
+
+            </mat-form-field>
+          </div>
+
+
+          <div style="padding-top:25px;">
+            <p class="messageError" *ngIf="message">{{ message }}</p>
+            <button mat-button type="submit" class="btn btn-login" >更新</button>
+            <button mat-button type="button" class="btn btn-cancel" (click)="Cancel()">キャンセル</button>
+          </div>
+
+        </form>
+
+      </div>
+
+
+    </div>
+  </div>

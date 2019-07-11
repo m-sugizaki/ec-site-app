@@ -1,0 +1,74 @@
+.container{
+    font-size: 15px;
+}
+
+.thead{
+    width: 140px;
+    height: 30px;
+}
+.table-content{
+    margin-left: 10%;
+    margin-top:10px;
+}
+.thead-table{
+    background-color: #00B050;
+    width: 150px;
+}
+.button{
+    margin-top: 25px;
+    margin-left: 10%;
+    width: 20%;
+    padding: 10px;
+    background-color: #36bef4;
+}
+.blue{
+    color: #36bef4;
+}
+.btn-cancel {
+    margin-left: 20px;
+    width: 20%;
+    padding: 8px;
+    background-color: grey;
+  }
+
+  form{
+
+      width: 100%
+  }
+  .form-group{
+
+    margin-left: 10%;
+    margin-bottom: 15px;
+  }
+  .customDiv{
+    margin-left: 10%;
+
+  }
+  label{
+      width: 20%;
+      display: inline-block;
+  }
+  form .message {
+    margin-left: 10%;
+    color: #b3b3b3;
+    font-size: 12px;
+  }
+
+  form .message  {
+    color: #ef3b3a;
+    text-decoration: none;
+  }
+.h4-button-container {
+    padding-top:15px;
+  }
+.link {
+    background:none!important;
+    color:inherit;
+    border:none;
+    padding:0!important;
+    font: inherit;
+    /*border is optional*/
+    border-bottom:1px none skyblue;
+    cursor: pointer;
+    display: inherit;
+  }

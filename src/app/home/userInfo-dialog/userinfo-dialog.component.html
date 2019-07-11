@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="row" style="padding-bottom: 20px; ">
+
+    <div>
+      <!-- logo -->
+      <h1>
+        アカウント情報登録
+      </h1>
+
+      <form class="login-form" role="form" #f="ngForm" (ngSubmit)="insertNewUserInfo()">
+        <div class="customDiv">
+          <span style="margin-right:30px;">ユーザID</span>
+          <mat-form-field>
+            <input matInput name="user_id" [(ngModel)]="user.user_id" readonly>
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span style="margin-right:60px;">氏名</span>
+          <mat-form-field>
+            <input matInput id="name" name="name" [(ngModel)]="user.name" maxlength="50" required>
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span style="margin-right:44px;">ﾆｯｸﾈｰﾑ</span>
+          <mat-form-field>
+            <input matInput id="nickname" name="nickname" [(ngModel)]="user.nickname" type="text" maxlength="50"
+               required>
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span style="margin-right:28px;">郵便番号</span>
+          <mat-form-field>
+            <input matInput id="postal_code" name="postal_code" [(ngModel)]="user.postalCode" maxlength="50"
+             required>
+
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span style="margin-right:52px;">住所1</span>
+          <mat-form-field>
+            <input matInput id="address1" name="address1" [(ngModel)]="user.address1" maxlength="100" required>
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span style="margin-right:52px;">住所2</span>
+          <mat-form-field>
+            <input matInput id="address2" name="address2" [(ngModel)]="user.address2" maxlength="100" >
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span style="margin-right:28px;">電話番号</span>
+          <mat-form-field>
+            <input matInput id="phone_number" name="phone_number" [(ngModel)]="user.phoneNumber" maxlength="15"
+               #phone_number="ngModel" required>
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span style="margin-right:48px;">E-mail</span>
+          <mat-form-field>
+            <input matInput id="email" name="email" [(ngModel)]="user.email" type="email" maxlength="50"
+              required>
+
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span style="margin-right:28px;">生年月日</span>
+          <mat-form-field>
+            <!-- <input matInput [matDatepicker]="picker" id="birthday" name="birthday" [(ngModel)]="user.birthday"
+            maxlength="10" (keypress)="isNumber($event)" required>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker> -->
+            <input matInput id="birthday" name="user.birthday" [(ngModel)]="user.birthday" maxlength="10" required>
+          </mat-form-field>
+        </div>
+        <div class="customDiv">
+          <span style="margin-right:36px;">会員ﾗﾝｸ</span>
+          <mat-form-field>
+            <input matInput id="member_rank" name="member_rank" [(ngModel)]="user.memberRank" maxlength="5" required readonly>
+          </mat-form-field>
+        </div>
+        <p class="messageError" *ngIf="message">{{ message }}</p>
+        <!-- <p class="success" *ngIf="success">{{ success }}</p> -->
+
+            <button type="button"  class="link" (click)="openDialogPaymentMethod()">支払い方法登録</button>
+            <button type="button" class="link" (click)="openDialogShippingAddress()">お届け先登録</button>
+        <div style="padding-top:25px;">
+          <button mat-button type="submit" class="btn btn-login">登録</button>
+          <button mat-button type="button" class="btn btn-cancel" (click)="onNoClick()">キャンセル</button>
+        </div>
+
+      </form>
+
+    </div>
+
+
+  </div>
+</div>
