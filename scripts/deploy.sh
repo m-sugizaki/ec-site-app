@@ -77,11 +77,11 @@ git commit --quiet -m "commiting by Travic CI"
 # git commit --quiet -m "${US}"
 git push --force --quiet "https://${GITHUB_TOKEN}@${GH_REF}" master:master
 
-# echo "Update Rally"
-# cd ${CURDIR}
-# cd scripts/AgileAPIScript_Run
-# chmod 555 ./agileApiObjectHandleBash.sh 
-# ./agileApiObjectHandleBash.sh ${ACT} ${US} ${TXT}
+## echo "Update Rally"
+## cd ${CURDIR}
+## cd scripts/AgileAPIScript_Run
+## chmod 555 ./agileApiObjectHandleBash.sh 
+## ./agileApiObjectHandleBash.sh ${ACT} ${US} ${TXT}
 
 # cd ${CURDIR}
 # pwd
