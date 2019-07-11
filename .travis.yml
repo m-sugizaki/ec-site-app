@@ -24,9 +24,9 @@ branches:
     - master
 
 before_install:
-##  - chmod 555 ./scripts/deploy.sh
-##  - npm install -g @angular/cli
-##  # karma for travis
+  - chmod 555 ./scripts/deploy.sh
+  - npm install -g @angular/cli
+  # karma for travis
 ##  - export CHROME_BIN=chromium-browser
 ##  - export DISPLAY=:99.0
 ##  - sh -e /etc/init.d/xvfb start
@@ -43,7 +43,7 @@ script:
 after_success:
   # - npm install coveralls
   # - cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js
-##  - bash scripts/deploy.sh
+  - bash scripts/deploy.sh
 ##  - bash scripts/result.sh # テスト結果のindexを作成
 ###  - cd scripts/AgileAPIScript_Run # RallyAPIテスト
 ###  - bash agileApiObjectHandleBash.sh 1 US557 Defined # RallyAPIテスト
