@@ -62,6 +62,6 @@ deploy:
     branch: master
 
 env:
-##  global:
-##  - GH_REF: github.com/m-sugizaki/tmpRepoECSite.git
+  global:
+  - GH_REF: github.com/m-sugizaki/tmpRepoECSite.git
  

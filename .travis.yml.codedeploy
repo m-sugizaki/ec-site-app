@@ -1,0 +1,43 @@
+language: node_js
+node_js:
+  - "10.15.3"
+
+dist: trusty
+
+sudo: required
+
+cache:
+  directories:
+    - node_modules
+
+branches:
+  only:
+    - master
+
+before_install:
+  - echo "Pass -before install-"
+
+script:
+  - echo "Pass -script-"
+  - pwd
+  - ls -al
+
+after_script:
+  - echo "Pass -after install-"
+
+after_success:
+
+after_failure:
+
+deploy:
+- provider: codedeploy
+  access_key_id: $ACCESS_KEY
+  secret_access_key: $SECRET_KEY
+  application: ec-site-app
+  deployment_group: ec-site-app
+  region: ap-northeast-1
+
+env:
+  global:
+  - GH_REF: github.com/m-sugizaki/tmpRepoECSite.git
+ 

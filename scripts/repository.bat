@@ -1,0 +1,1 @@
+powershell "Copy-Item C:\Workspace\ec-site-app\*.zip C:\Repository\ec-site-app"
