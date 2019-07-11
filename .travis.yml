@@ -53,13 +53,13 @@ after_failure:
 after_script:
 
 deploy:
-##  provider: pages
-##  skip_cleanup: true
-##  github_token: $GITHUB_TOKEN
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN
 ##  local_dir: report
-##  # local_dir: dist/componentSample
-##  on:
-##    branch: master
+  local_dir: dist/ec-site-app
+  on:
+    branch: master
 
 env:
 ##  global:
