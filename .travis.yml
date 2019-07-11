@@ -63,5 +63,5 @@ deploy:
 
 env:
   global:
-  - GH_REF: github.com/m-sugizaki/tmpRepoECSite.git
+  - GH_REF: github.com/m-sugizaki/tmpRepository.git
  
