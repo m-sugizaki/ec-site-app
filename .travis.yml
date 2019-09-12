@@ -10,12 +10,12 @@ cache:
   directories:
     - node_modules
 
-addons:
-  apt:
-    sources:
-      - google-chrome
-    packages:
-      - google-chrome-stable
+# addons:
+#   apt:
+#     sources:
+#       - google-chrome
+#     packages:
+#       - google-chrome-stable
 
   # sauce_connect: true
 
@@ -31,6 +31,16 @@ before_install:
 ##  - export DISPLAY=:99.0
 ##  - sh -e /etc/init.d/xvfb start
 ##  - sleep 5
+
+    - sudo apt-get autoremove
+    - sudo apt-get update
+    - sudo apt-get install --assume-yes fonts-liberation libappindicator1
+    - wget -O /tmp/chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - sudo dpkg -i /tmp/chrome.deb
+    - export CHROME_BIN=google-chrome-stable
+    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
+    - sleep 5
 
 before_script:
 
